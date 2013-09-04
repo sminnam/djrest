@@ -5,7 +5,6 @@ from multipart_form_data.models import MyFiles
 class MyFilesSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = MyFiles
-		fields = ('docfile', 'title','customerId')
-   		#fields = ('docfile', 'title')
+		fields = ('docfile', 'title','customerId', 'MSISDN')
 
 
