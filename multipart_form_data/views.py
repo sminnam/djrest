@@ -25,13 +25,14 @@ def upload_form(request):
 @api_view(['POST','GET'])
 def upload_multipart(request):
 	if request.method == 'POST':
-		logger.info('POST Request is  for customerId=%s, MSISDN=%s', request.DATA['customerId'], request.DATA['MSISDN'] )
+		logger.info('POST request  for customerId=%s, MSISDN=%s', request.DATA['customerId'], request.DATA['MSISDN'] )
 		serializer = MyFilesSerializer(data=request.DATA, files=request.FILES)
 		if serializer.is_valid():
 			serializer.save()
 			logger.info('File %s is saved/uploaded for customerId=%s, MSISDN=%s', request.DATA['title'], request.DATA['customerId'], request.DATA['MSISDN'] )			
 			return Response(data=request.DATA, status=status.HTTP_201_CREATED)
 		else:
+			logger.error('Invalid POST Request %s', request.DATA)
 			return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 			
 	elif request.method == 'GET':
