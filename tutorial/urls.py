@@ -14,6 +14,6 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
-	url(r'^rsttodcf/', include('multipart_form_data.urls')),
+	url(r'^api/', include('multipart_form_data.urls')),
 )
 
