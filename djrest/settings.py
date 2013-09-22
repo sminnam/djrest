@@ -1,4 +1,4 @@
-# Django settings for tutorial project.
+# Django settings for djrest project.
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -45,7 +45,9 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = '/tmp/djrest/'
+
+#MEDIA_ROOT = ''
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -97,10 +99,10 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'tutorial.urls'
+ROOT_URLCONF = 'djrest.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'tutorial.wsgi.application'
+WSGI_APPLICATION = 'djrest.wsgi.application'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -129,6 +131,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PARSER_CLASSES': (
         'rest_framework.parsers.FormParser',
         'rest_framework.parsers.MultiPartParser',
+        'rest_framework.parsers.JSONParser',
     )
 }
 
@@ -160,7 +163,7 @@ LOGGING = {
             'backupCount': 2
         },
         'console':{
-            'level':'INFO',
+            'level':'DEBUG',
             'class':'logging.StreamHandler',
             'formatter': 'verbose'
         },

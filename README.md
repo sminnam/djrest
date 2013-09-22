@@ -13,6 +13,9 @@ export LC_ALL=
 
 
 
+
+
+
 1. Testing
 curl -i -F customerId=123456 -F MSISDN=2345677 -F title=cmis-article.pdf -F docfile=@Desktop/Orange/CMIS/cmis-article.pdf  http://localhost:8000/rsttodcf/upload/
 
@@ -24,25 +27,14 @@ REST_FRAMEWORK = {
     
     or
      'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticatedOrReadOnly',),
+
+3. Set the downloaded files in settings file
+E.g
+MEDIA_ROOT = '/tmp/djrest/'
      
-3. Testing with write Authentication
- curl -i -F customerId=2345667 -F MSISDN=0567727727727277 -F title=cmis-article.pdf -F docfile=@Desktop/Orange/CMIS/cmis-article.pdf  -u qvantel:qvantel1234  -H 'Accept: application/json; indent=4' http://localhost:8000/rsttodcf/upload/
 
-HTTP/1.0 201 CREATED
-Date: Thu, 05 Sep 2013 00:22:57 GMT
-Server: WSGIServer/0.1 Python/2.7.1
-Vary: Accept, Cookie
-Content-Type: application/json; indent=4; charset=utf-8
-Allow: POST, OPTIONS, GET
-
-{
-    "MSISDN": "0567727727727277", 
-    "customerId": "2345667", 
-    "title": "cmis-article.pdf"
-}
-
-4. Testing with multiple files
-curl -i -F customerId=2345667 -F msisdn=0567727727727277  -F docfile=@Desktop/Orange/CMIS/cmis-article.pdf  -F legalFile=@o.xml -u qvantel:qvantel1234  -H 'Accept: application/json; indent=4' http://localhost:8000/api/documentum/pos 
+3. Testing with multiple files
+curl -i  -F contractFile=@./testfiles/cmis-article.pdf -F jsonFile=@./testfiles/t.json  -F idFile=@./testfiles/o.xml -u qvantel:qvantel1234  -H 'Accept: application/json; indent=4' http://localhost:8000/api/documentum/pos 
 
 HTTP/1.0 201 CREATED
 Date: Fri, 06 Sep 2013 18:46:49 GMT
@@ -53,6 +45,7 @@ Allow: POST, OPTIONS, GET
 
 {
     "msisdn": "0567727727727277", 
-    "customerId": "2345667"
+    "docId": "2345667"
 }
+
 
