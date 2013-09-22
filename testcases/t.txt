@@ -1,0 +1,7 @@
+name
+srikanth
+age
+42
+year
+1990
+
