@@ -43,7 +43,6 @@ def upload_multipart(request):
 		if serializer.is_valid():
 			serializer.save()
 			logger.info('File %s is saved/uploaded',request.FILES['contractFile'])
-			result = {"msisdn":"99999", "docid":"1232424242424"}
 			result = generate_response(jsonData)
 			return Response(data=result, status=status.HTTP_201_CREATED)
 		else:
